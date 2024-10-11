@@ -1,5 +1,5 @@
 ### 忽略文件
-.pt
-.pth
-.txt
+*.pt
+*.pth
+*.txt
 train.py
