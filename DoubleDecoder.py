@@ -4,7 +4,7 @@ import torch.nn.functional as F
 from layers.Transformer_EncDec import Decoder, DecoderLayer, Encoder, EncoderLayer, ConvLayer,esDecoderLayer,RNNWithInit
 from layers.SelfAttention_Family import ProbAttention, AttentionLayer,MAM
 from layers.Embed import DataEmbedding
-from efficient_kan import kan
+# from efficient_kan import kan
 import pywt
 import config
 def Dwt_for_Signals(x,wavename):
@@ -107,10 +107,7 @@ class Model(nn.Module):
         )
         
         self.device = configs.device
-        self.batchnorm = nn.LayerNorm(80)
-        self.linears = nn.Linear(80, 100)
-        self.MaM = MAM(80,100)
-        # self.TFD = TFD(config.net_config)
+        
         self.rnnInit = RNNWithInit(input_size=configs.es_out, output_size=configs.c_out,hidden_size=configs.rnn_hidden ,num_rnn_layer=1, rnn_type='LSTM', bidirectional=True, dropout=configs.dropout_rnn)
     def long_forecast(self,x_enc,x_mark_enc,x_dec,x_mark_dec):
         # TFD_out = Dwt_for_Signals(x_enc,"symmetric")
